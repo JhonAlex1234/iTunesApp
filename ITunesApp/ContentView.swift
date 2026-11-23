@@ -2,7 +2,7 @@
 //  ContentView.swift
 //  ITunesApp
 //
-//  Created by user306392 on 23/11/26.
+//  Marta Haro
 //
 
 import SwiftUI
