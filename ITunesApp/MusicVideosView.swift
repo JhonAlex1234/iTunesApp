@@ -9,11 +9,31 @@ import SwiftUI
 
 struct MusicVideosView: View {
     let title: String
-
+    
+    // Variable para buscar hay que acabar de configurarla
+    @State private var searchText: String = ""
+    
     var body: some View {
-        Text(title)
-            .font(.title)
-    }
+        VStack{
+        
+            Image(systemName: "play.rectangle")
+                .font(.largeTitle)
+                .foregroundStyle(Color.accentColor)
+                .frame(width: 60, height: 60)
+                .background(Color.accentColor.opacity(0.20), in: Circle())
+            
+            Text("«Type to search»")
+                .font(.largeTitle)
+            
+            Text("Search by title or artist, then tap Search.")
+                .font(.subheadline)
+                .foregroundStyle(.secondary)
+            
+        }.navigationTitle(title).searchable(
+            text: $searchText,
+            placement: .navigationBarDrawer(displayMode: .always),
+            prompt: "Search by title or artist"
+        )    }
 }
 
 #Preview {

@@ -10,18 +10,19 @@ import SwiftUI
 struct MainView: View {
     var body: some View {
         TabView {
-            SongsView(title: "Songs")
-                .tabItem {
-                    Label("Songs", systemImage: "music.note")
-                }
-            MusicVideosView(title: "Music Videos")
-                .tabItem {
-                    Label("Music Videos", systemImage: "play.rectangle")
-                }
+            NavigationStack {
+                SongsView(title: "Songs")
+            }.tabItem {
+                Label("Songs", systemImage: "music.note")
+            }
             
+            NavigationStack {
+                MusicVideosView(title: "Music Videos")
+            }.tabItem {
+                Label("Music Videos", systemImage: "play.rectangle")
+            }
         }.tint(Color.accent)
     }
-    
 }
      
 
