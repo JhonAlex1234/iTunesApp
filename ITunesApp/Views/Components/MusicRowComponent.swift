@@ -36,13 +36,3 @@ struct MusicRowComponent: View {
         .frame(maxWidth: .infinity, alignment: .leading)
     }
 }
-
-#Preview {
-    List {
-        MusicRowComponent(
-            trackName: "BESO",
-            artistName: "ROSALÍA & Rauw Alejandro",
-            secondaryText: "RR - Single"
-        )
-    }
-}

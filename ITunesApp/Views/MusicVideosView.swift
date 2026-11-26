@@ -8,34 +8,53 @@
 import SwiftUI
 
 struct MusicVideosView: View {
-    let title: String
-    
+
     // Variable para buscar hay que acabar de configurarla
     @State private var searchText: String = ""
-    
+
+    // Variable para los vídeos musicales
+    @Environment(MusicStore.self) private var store
+
+    let title: String
+
     var body: some View {
-        VStack{
-        
-            Image(systemName: "play.rectangle")
-                .font(.largeTitle)
-                .foregroundStyle(Color.accentColor)
-                .frame(width: 60, height: 60)
-                .background(Color.accentColor.opacity(0.20), in: Circle())
-            
-            Text("«Type to search»")
-                .font(.largeTitle)
-            
-            Text("Search by title or artist, then tap Search.")
-                .font(.subheadline)
-                .foregroundStyle(.secondary)
-            
-        }.navigationTitle(title).searchable(
+
+        Group {
+
+            if store.musicVideos.isEmpty {
+
+                SearchStateComponent(
+                    icon: "play.rectangle",
+                    title: "Type to search",
+                    message: "Search by title or artist, then tap Search."
+                )
+
+            } else {
+
+                List(store.musicVideos) { video in
+
+                    MusicVideoRowComponent(
+                        trackName: video.trackName,
+                        artistName: video.artistName,
+                        trackTimeMillis: video.trackTimeMillis
+                    )
+
+                }
+            }
+        }
+        .navigationTitle(title)
+        .navigationBarTitleDisplayMode(.inline)
+        .searchable(
             text: $searchText,
             placement: .navigationBarDrawer(displayMode: .always),
             prompt: "Search by title or artist"
-        )    }
+        )
+    }
 }
 
 #Preview {
-    MusicVideosView(title: "Music Videos")
+    NavigationStack {
+        MusicVideosView(title: "Music Videos")
+    }
+    .environment(MusicStore())
 }

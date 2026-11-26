@@ -23,21 +23,11 @@ struct SongsView: View {
             
             if store.songs.isEmpty {
                 
-                VStack {
-                    
-                    Image(systemName: "music.note")
-                        .font(.largeTitle)
-                        .foregroundStyle(Color.accentColor)
-                        .frame(width: 60, height: 60)
-                        .background(Color.accentColor.opacity(0.20), in: Circle())
-                    
-                    Text("«Type to search»")
-                        .font(.largeTitle)
-                    
-                    Text("Search by title or artist, then tap Search.")
-                        .font(.subheadline)
-                        .foregroundStyle(.secondary)
-                }
+                SearchStateComponent(
+                    icon: "music.note",
+                    title: "Type to search",
+                    message: "Search by title or artist, then tap Search."
+                )
                 
             } else {
                 
