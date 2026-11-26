@@ -1,21 +1,9 @@
-//
-//  SongDetailView.swift
-//  ITunesApp
-//
-//  Created by user306392 on 26/11/26.
-//
-
 import SwiftUI
 
 struct SongDetailView: View {
-    let title: String
-    let artist: String
-    let genre: String
-    let releaseDate: Date
-    let album: String
-    let duration: String
-    let price: String
-    
+
+    let song: Song
+
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 16) {
@@ -24,35 +12,40 @@ struct SongDetailView: View {
                     .aspectRatio(1, contentMode: .fit)
                     .clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous))
                     .frame(maxWidth: 280)
-                    .frame(maxWidth: .infinity)   // centra la carátula
+                    .frame(maxWidth: .infinity)
                     .accessibilityHidden(true)
-                
+
                 VStack(alignment: .leading) {
-                    Text(title)
+                    Text(song.trackName)
                         .font(.largeTitle)
                         .bold()
-                    Text(artist)
+                    Text(song.artistName)
                         .font(.title3)
                         .foregroundStyle(.secondary)
                 }
-                
+
                 Grid(alignment: .leading) {
-                    row("Género", genre)
+                    row("Género", song.primaryGenreName)
                     Divider()
-                    row("Lanzamiento", releaseDate.formatted(date: .abbreviated, time: .omitted))
+                    row("Lanzamiento", song.releaseDate)
                     Divider()
-                    row("Álbum", album)
+                    row("Álbum", song.collectionName)
                     Divider()
                     row("Duración", duration)
                     Divider()
-                    row("Precio", price)
+                    row("Precio", "\(song.trackPrice) \(song.currency)")
                 }
             }
             .scenePadding()
         }
         .navigationBarTitleDisplayMode(.inline)
     }
-    
+
+    private var duration: String {
+        let seconds = song.trackTimeMillis / 1000
+        return String(format: "%d:%02d", seconds / 60, seconds % 60)
+    }
+
     private func row(_ label: String, _ value: String) -> some View {
         GridRow {
             Text(label)
@@ -67,12 +60,17 @@ struct SongDetailView: View {
 
 #Preview {
     SongDetailView(
-        title: "BESO",
-        artist: "ROSALÍA & Rauw Alejandro",
-        genre: "Pop latino",
-        releaseDate: .now,
-        album: "RR - Single",
-        duration: "3:14",
-        price: "1,29 USD"
+        song: Song(
+            id: 1676343411,
+            trackName: "BESO",
+            artistName: "ROSALÍA & Rauw Alejandro",
+            artworkUrl100: "",
+            primaryGenreName: "Pop Latino",
+            releaseDate: "2023-03-24T12:00:00Z",
+            collectionName: "RR - Single",
+            trackTimeMillis: 194543,
+            trackPrice: 1.29,
+            currency: "USD"
+        )
     )
 }

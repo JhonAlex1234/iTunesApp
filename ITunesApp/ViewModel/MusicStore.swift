@@ -12,7 +12,7 @@ class MusicStore {
     
     private(set) var songs: [Song] = [
         Song(
-                trackId: 1676343411,
+                id: 1676343411,
                 trackName: "BESO",
                 artistName: "ROSALÍA & Rauw Alejandro",
                 artworkUrl100: "",

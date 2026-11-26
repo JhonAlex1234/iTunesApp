@@ -10,7 +10,7 @@ import Foundation
 struct MusicVideo: Identifiable {
     
     // Hace falta adaptarlas a la API
-    private(set) var trackId: Int
+    var id: Int
     private(set) var trackName: String
     private(set) var artistName: String
     private(set) var artworkUrl100: String
@@ -21,8 +21,5 @@ struct MusicVideo: Identifiable {
     private(set) var currency: String
     private(set) var previewUrl: String?
 
-    var id: Int {
-        trackId
-    }
     
 }

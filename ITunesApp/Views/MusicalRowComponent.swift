@@ -1,45 +1,48 @@
-//
-//  MusicalRowComponent.swift
-//  ITunesApp
-//
-//  Created by user306392 on 26/11/26.
-//
-
 import SwiftUI
 
-struct MusicalRowComponent: View {
+struct MusicRowComponent: View {
+
     private let imageName = "MusicalIconGrey"
-    let title: String
-    let artist: String
-    let subtitle: String
+
+    let trackName: String
+    let artistName: String
+    let secondaryText: String
 
     var body: some View {
+
         HStack {
+
             Image(imageName)
                 .resizable()
                 .scaledToFill()
                 .frame(width: 64, height: 64)
                 .clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous))
-                .accessibilityHidden(true)
+                .padding(.all, 8)
 
             VStack(alignment: .leading) {
-                Text(title)
+
+                Text(trackName)
                     .font(.headline)
-                Text(artist)
+
+                Text(artistName)
                     .font(.subheadline)
                     .foregroundStyle(.secondary)
-                Text(subtitle)
+
+                Text(secondaryText)
                     .font(.footnote)
                     .foregroundStyle(.secondary)
             }
         }
         .frame(maxWidth: .infinity, alignment: .leading)
-        .accessibilityElement(children: .combine)
     }
 }
 
 #Preview {
     List {
-        MusicalRowComponent(title: "Title", artist: "Artist", subtitle: "Subtitle")
+        MusicRowComponent(
+            trackName: "BESO",
+            artistName: "ROSALÍA & Rauw Alejandro",
+            secondaryText: "RR - Single"
+        )
     }
 }
