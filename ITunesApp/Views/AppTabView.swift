@@ -27,5 +27,5 @@ struct AppTabView: View {
      
 
 #Preview {
-    AppTabView()
+    AppTabView().environment(MusicStore())
 }

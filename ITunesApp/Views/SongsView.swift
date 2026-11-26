@@ -8,10 +8,15 @@
 import SwiftUI
 
 struct SongsView: View {
-    let title: String
+    
     
     // Variable para buscar hay que acabar de configurarla
     @State private var searchText: String = ""
+    
+    // Variable para la musica
+    @Environment(MusicStore.self) private var store
+    
+    let title: String
     
     var body: some View {
         

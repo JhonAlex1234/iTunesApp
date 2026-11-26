@@ -12,6 +12,7 @@ struct ITunesApp: App {
     var body: some Scene {
         WindowGroup {
             AppTabView()
+                .environment(MusicStore())
         }
     }
 }
