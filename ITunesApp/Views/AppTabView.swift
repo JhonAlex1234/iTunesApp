@@ -1,13 +1,13 @@
 //
-//  TabView.swift
+//  AppTabView.swift
 //  ITunesApp
 //
-//  Created by user306392 on 25/11/26.
+//  Created by user306392 on 26/11/26.
 //
 
 import SwiftUI
 
-struct MainView: View {
+struct AppTabView: View {
     var body: some View {
         TabView {
             NavigationStack {
@@ -27,5 +27,5 @@ struct MainView: View {
      
 
 #Preview {
-    MainView()
+    AppTabView()
 }

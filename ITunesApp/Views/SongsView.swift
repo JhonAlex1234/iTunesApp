@@ -31,6 +31,7 @@ struct SongsView: View {
                 .foregroundStyle(.secondary)
             
         }.navigationTitle(title)
+            .navigationBarTitleDisplayMode(.inline)
             .searchable(
                 text: $searchText,
                 placement: .navigationBarDrawer(displayMode: .always),
