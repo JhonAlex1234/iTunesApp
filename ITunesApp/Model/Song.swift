@@ -7,9 +7,8 @@
 
 import Foundation
 
-struct Song: Identifiable {
+struct Song: Identifiable, Decodable, Equatable{
     
-    // Hace falta modificarlas para la API
     var id: Int
     private(set) var trackName: String
     private(set) var artistName: String
@@ -21,5 +20,17 @@ struct Song: Identifiable {
     private(set) var trackPrice: Double
     private(set) var currency: String
     
+    // Codificación para la API
+    enum CodingKeys: String, CodingKey {
+        case id = "trackId"
+        case trackName
+        case artistName
+        case artworkUrl100
+        case primaryGenreName
+        case releaseDate
+        case collectionName
+        case trackTimeMillis
+        case trackPrice
+        case currency
+    }
 }
-
