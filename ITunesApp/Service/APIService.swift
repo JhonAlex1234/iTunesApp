@@ -36,4 +36,29 @@ struct APIService{
             throw APIError.networkError(error)
             }
         }
+    
+    // Buscar canciones
+    static func fetchSongs(searchText: String) async throws -> [Song] {
+        // Empleamos la URL
+        var components = URLComponents(
+            string: "https://itunes.apple.com/search"
+        )
+        
+        // Implementamos los parámetros de la consulta que se desea hacer en la API
+        components?.queryItems = [
+            URLQueryItem(name: "term", value: searchText),
+            URLQueryItem(name: "media", value: "music"),
+            URLQueryItem(name: "entity", value: "song")
+        ]
+        
+        // Comprobación de que la URL sea válida
+        guard let url = components?.url else {
+            throw APIError.invalidURL
+        }
+        
+        // Llamada a la función fetchData para obtener los resultados de la API
+        return try await fetchData(
+            stringURL: url.absoluteString
+        )
     }
+}
